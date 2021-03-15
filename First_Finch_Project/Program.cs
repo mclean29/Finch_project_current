@@ -2553,30 +2553,56 @@ namespace Project_FinchControl
 
             foreach (Command command in commands)
             {
+                Console.WriteLine($"\tCommand: {command}");
+                Console.WriteLine();
                 switch (command)
                 {
                     case Command.none:
+                        Console.WriteLine();
+                        Console.WriteLine("\tDefault Value Error");
+                        Console.WriteLine();
                         break;
+
                     case Command.moveforward:
+                        doofus.setMotors(commandParameters.motorSpeed, commandParameters.motorSpeed);
                         break;
+
                     case Command.movebackward:
+                        doofus.setMotors(-commandParameters.motorSpeed, -commandParameters.motorSpeed);
                         break;
+
                     case Command.stopmotors:
+                        doofus.setMotors(0, 0);
                         break;
+
                     case Command.wait:
+                        int waitMilliseconds = (int)commandParameters.waitSeconds;
+                        doofus.wait(waitMilliseconds);
                         break;
+
                     case Command.turnright:
+
                         break;
+
                     case Command.turnleft:
+
                         break;
+
                     case Command.ledon:
+
                         break;
+
                     case Command.ledoff:
+
                         break;
+
                     case Command.gettemperature:
+
                         break;
+
                     case Command.done:
                         break;
+
                     default:
                         break;
                 }
@@ -2637,7 +2663,7 @@ namespace Project_FinchControl
                 }
 
             } while (!isDone);
-
+           
 
 
             continueScreen();
@@ -2652,24 +2678,143 @@ namespace Project_FinchControl
             (int motorSpeed, int ledBrightness, double waitSeconds) commandParameters;
 
             DisplayScreenHeader("Command Parameters");
+            commandParameters.motorSpeed = 0;
+            int motorSpeedPara = 0;
+            string motorSpeedParaP = "";
+
+            commandParameters.ledBrightness = 0;
+            int ledBrightnessPara = 0;
+            string ledBrightnessParaP = "";
+
+            commandParameters.waitSeconds = 0;
+            double waitSecondsPara = 0;
+            string waitSecondsParaP = "";
+
+            bool validResponse = true;
 
             //
             //
             //TO DO VALIDATE
             //
             //
-            Console.Write("Motor Speed (from 1-255): ");
-            commandParameters.motorSpeed = int.Parse(Console.ReadLine());
-            Console.WriteLine();
+            //Console.Write("Motor Speed (from 1-255): ");
+            //commandParameters.motorSpeed = int.Parse(Console.ReadLine());
+            //Console.WriteLine();
+           
+            //
+            //validate motor speed
+            //
+            do
+            {
+                validResponse = true;
 
-            Console.Write("LED Brightness (from 1-255): ");
-            commandParameters.ledBrightness = int.Parse(Console.ReadLine());
-            Console.WriteLine();
+                //
+                //insert first number
+                //
+                Console.WriteLine();
+                Console.Write($"\tValue of motor speed: ");
+                motorSpeedParaP = Console.ReadLine();
+                Console.WriteLine();
 
-            Console.Write("Wait Time (Seconds): ");
-            commandParameters.waitSeconds = double.Parse(Console.ReadLine());
-            Console.WriteLine();
+                if (!int.TryParse(motorSpeedParaP, out motorSpeedPara))
+                {
+                    Console.WriteLine();
+                    Console.WriteLine($"\tPlease enter a number using digits from 0-255");
+                    validResponse = false;
+                }
+                else if ((motorSpeedPara >= 256))
+                {
+                    Console.WriteLine();
+                    Console.WriteLine($"\tPlease enter a number using digits from 0-255");
+                    validResponse = false;
+                }
+                else
+                {
+                    Console.WriteLine($"\tYou entered: {motorSpeedPara}");
+                    commandParameters.motorSpeed = motorSpeedPara;
+                    continueScreen();
+                }
 
+            } while (!validResponse);
+
+            //
+            //insert led brightness
+            //
+            //Console.Write("LED Brightness (from 1-255): ");
+            //commandParameters.ledBrightness = int.Parse(Console.ReadLine());
+            //Console.WriteLine();
+
+            do
+            {
+                validResponse = true;
+
+                //
+                //insert first number
+                //
+                Console.WriteLine();
+                Console.Write($"\tValue of led brightness: ");
+                ledBrightnessParaP = Console.ReadLine();
+                Console.WriteLine();
+
+                if (!int.TryParse(ledBrightnessParaP, out ledBrightnessPara))
+                {
+                    Console.WriteLine();
+                    Console.WriteLine($"\tPlease enter a number using digits from 0-255");
+                    validResponse = false;
+                }
+                else if ((ledBrightnessPara >= 256))
+                {
+                    Console.WriteLine();
+                    Console.WriteLine($"\tPlease enter a number using digits from 0-255");
+                    validResponse = false;
+                }
+                else
+                {
+                    Console.WriteLine($"\tYou entered: {ledBrightnessPara}");
+                    commandParameters.ledBrightness = ledBrightnessPara;
+                    continueScreen();
+                }
+
+            } while (!validResponse);
+
+            //
+            //enter wait time
+            //
+            //Console.Write("Wait Time (Seconds): ");
+            //commandParameters.waitSeconds = double.Parse(Console.ReadLine());
+            //Console.WriteLine();
+            do
+            {
+                validResponse = true;
+
+                //
+                //insert first number
+                //
+                Console.WriteLine();
+                Console.Write($"\tValue of led brightness: ");
+                waitSecondsParaP = Console.ReadLine();
+                Console.WriteLine();
+
+                if (!double.TryParse(waitSecondsParaP, out waitSecondsPara))
+                {
+                    Console.WriteLine();
+                    Console.WriteLine($"\tPlease enter a number using digits from 0-255");
+                    validResponse = false;
+                }
+                else if ((waitSecondsPara >= 256))
+                {
+                    Console.WriteLine();
+                    Console.WriteLine($"\tPlease enter a number using digits from 0-255");
+                    validResponse = false;
+                }
+                else
+                {
+                    Console.WriteLine($"\tYou entered: {waitSecondsPara}");
+                    commandParameters.waitSeconds = waitSecondsPara;
+                    continueScreen();
+                }
+
+            } while (!validResponse);
 
 
             continueScreen();
