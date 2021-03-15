@@ -2581,23 +2581,27 @@ namespace Project_FinchControl
                         break;
 
                     case Command.turnright:
-
+                        doofus.setMotors(100, -100);
+                        doofus.wait(650);
+                        doofus.setMotors(0, 0);
                         break;
 
                     case Command.turnleft:
-
+                        doofus.setMotors(-100, 100);
+                        doofus.wait(650);
+                        doofus.setMotors(0, 0);
                         break;
 
                     case Command.ledon:
-
+                        doofus.setLED(commandParameters.ledBrightness, commandParameters.ledBrightness, commandParameters.ledBrightness);
                         break;
 
                     case Command.ledoff:
-
+                        doofus.setLED(0,0,0);
                         break;
 
                     case Command.gettemperature:
-
+                        Console.Write("\tThe Current temp is: "+ doofus.getTemperature());
                         break;
 
                     case Command.done:
@@ -2692,11 +2696,7 @@ namespace Project_FinchControl
 
             bool validResponse = true;
 
-            //
-            //
-            //TO DO VALIDATE
-            //
-            //
+           
             //Console.Write("Motor Speed (from 1-255): ");
             //commandParameters.motorSpeed = int.Parse(Console.ReadLine());
             //Console.WriteLine();
