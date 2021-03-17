@@ -2722,7 +2722,7 @@ namespace Project_FinchControl
                     Console.WriteLine($"\tPlease enter a number using digits from 0-255");
                     validResponse = false;
                 }
-                else if ((motorSpeedPara >= 256))
+                else if ((motorSpeedPara >= 256) || (motorSpeedPara <0))
                 {
                     Console.WriteLine();
                     Console.WriteLine($"\tPlease enter a number using digits from 0-255");
@@ -2743,7 +2743,7 @@ namespace Project_FinchControl
             //Console.Write("LED Brightness (from 1-255): ");
             //commandParameters.ledBrightness = int.Parse(Console.ReadLine());
             //Console.WriteLine();
-
+            DisplayScreenHeader("Led Brightness Parameter");
             do
             {
                 validResponse = true;
@@ -2762,7 +2762,7 @@ namespace Project_FinchControl
                     Console.WriteLine($"\tPlease enter a number using digits from 0-255");
                     validResponse = false;
                 }
-                else if ((ledBrightnessPara >= 256))
+                else if ((ledBrightnessPara >= 256) || (ledBrightnessPara < 0))
                 {
                     Console.WriteLine();
                     Console.WriteLine($"\tPlease enter a number using digits from 0-255");
@@ -2783,6 +2783,7 @@ namespace Project_FinchControl
             //Console.Write("Wait Time (Seconds): ");
             //commandParameters.waitSeconds = double.Parse(Console.ReadLine());
             //Console.WriteLine();
+            DisplayScreenHeader("Seconds to wait Parameter");
             do
             {
                 validResponse = true;
@@ -2801,7 +2802,7 @@ namespace Project_FinchControl
                     Console.WriteLine($"\tPlease enter a number using digits from 0-255");
                     validResponse = false;
                 }
-                else if ((waitSecondsPara >= 256))
+                else if ((waitSecondsPara < 0))
                 {
                     Console.WriteLine();
                     Console.WriteLine($"\tPlease enter a number using digits from 0-255");
