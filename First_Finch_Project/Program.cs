@@ -2488,7 +2488,7 @@ namespace Project_FinchControl
             bool quitMenu = false;
             string menuChoice;
 
-            (int motorSpeed, int ledBrightness, double waitSeconds) commandParameters;
+            (int motorSpeed, int ledBrightness, double waitSeconds, int soundFreq) commandParameters;
             List<Command> commands = null;
 
 
@@ -2544,7 +2544,7 @@ namespace Project_FinchControl
         //
         //Execute commands
         //
-        static void UserProgrammingDisplayExecuteCommands(Finch doofus, List<Command> commands, (int motorSpeed, int ledBrightness, double waitSeconds) commandParameters)
+        static void UserProgrammingDisplayExecuteCommands(Finch doofus, List<Command> commands, (int motorSpeed, int ledBrightness, double waitSeconds, int soundFreq) commandParameters)
         {
             DisplayScreenHeader("Execute commands");
 
@@ -2677,11 +2677,15 @@ namespace Project_FinchControl
         //
         //Get command parameters from user
         //
-        static (int motorSpeed, int ledBrightness, double waitSeconds) UserProgrammingDisplayGetCommandParam()
+        static (int motorSpeed, int ledBrightness, double waitSeconds, int soundFreq) UserProgrammingDisplayGetCommandParam()
         {
-            (int motorSpeed, int ledBrightness, double waitSeconds) commandParameters;
+            (int motorSpeed, int ledBrightness, double waitSeconds, int soundFreq) commandParameters;
 
             DisplayScreenHeader("Command Parameters");
+            commandParameters.soundFreq = 0;
+            int soundFreqPara = 0;
+            string soundFreqParaP = "";
+
             commandParameters.motorSpeed = 0;
             int motorSpeedPara = 0;
             string motorSpeedParaP = "";
@@ -2696,14 +2700,52 @@ namespace Project_FinchControl
 
             bool validResponse = true;
 
-           
+
             //Console.Write("Motor Speed (from 1-255): ");
             //commandParameters.motorSpeed = int.Parse(Console.ReadLine());
             //Console.WriteLine();
-           
+
+            //
+            //validate sound frequency
+            //
+            DisplayScreenHeader("Finch Buzzer Frequency");
+            do
+            {
+                validResponse = true;
+
+                //
+                //insert first number
+                //
+                Console.WriteLine();
+                Console.Write($"\tValue of Sound Frequency (0 for off): ");
+                soundFreqParaP = Console.ReadLine();
+                Console.WriteLine();
+
+                if (!int.TryParse(soundFreqParaP, out soundFreqPara))
+                {
+                    Console.WriteLine();
+                    Console.WriteLine($"\tPlease enter a number using digits from 0-255");
+                    validResponse = false;
+                }
+                else if ((soundFreqPara >= 1000) || (soundFreqPara < 0))
+                {
+                    Console.WriteLine();
+                    Console.WriteLine($"\tPlease enter a number using digits from 0-1000");
+                    validResponse = false;
+                }
+                else
+                {
+                    Console.WriteLine($"\tYou entered: {soundFreqPara}");
+                    commandParameters.soundFreq = soundFreqPara;
+                    continueScreen();
+                }
+
+            } while (!validResponse);
+
             //
             //validate motor speed
             //
+            DisplayScreenHeader("Finch Motor Speed");
             do
             {
                 validResponse = true;
