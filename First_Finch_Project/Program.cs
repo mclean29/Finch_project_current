@@ -2489,6 +2489,10 @@ namespace Project_FinchControl
             string menuChoice;
 
             (int motorSpeed, int ledBrightness, double waitSeconds, int soundFreq) commandParameters;
+            commandParameters.motorSpeed = 0;
+            commandParameters.ledBrightness = 0;
+            commandParameters.waitSeconds = 0;
+            commandParameters.soundFreq = 0;
             List<Command> commands = null;
 
 
@@ -2524,6 +2528,10 @@ namespace Project_FinchControl
 
                     case "c":
                         UserProgrammingDisplayViewCommands(commands);
+                        break;
+
+                    case "d":
+                        UserProgrammingDisplayExecuteCommands (doofus, commands, commandParameters);
                         break;
 
                     case "q":
@@ -2644,6 +2652,12 @@ namespace Project_FinchControl
             Command command;
 
             DisplayScreenHeader("User Commands");
+            Console.WriteLine();
+            Console.WriteLine("\tAvailable Commands: ");
+            Console.WriteLine("\tmoveforward, movebackward, stopmotors, wait, turnright, turnleft, ledon, ledoff, gettemperature, ");
+            Console.WriteLine();
+            Console.WriteLine("\tEnter (done) to finish the list of commands");
+
 
             do
             {
