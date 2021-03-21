@@ -32,6 +32,8 @@ namespace Project_FinchControl
         ledon,
         ledoff,
         gettemperature,
+        buzzeron,
+        buzzeroff,
         done
 
     }
@@ -2608,6 +2610,14 @@ namespace Project_FinchControl
                         doofus.setLED(0,0,0);
                         break;
 
+                    case Command.buzzeron:
+                        doofus.noteOn(commandParameters.soundFreq);
+                        break;
+
+                    case Command.buzzeroff:
+                        doofus.noteOff();
+                        break;
+
                     case Command.gettemperature:
                         Console.Write("\tThe Current temp is: "+ doofus.getTemperature());
                         break;
@@ -2655,6 +2665,7 @@ namespace Project_FinchControl
             Console.WriteLine();
             Console.WriteLine("\tAvailable Commands: ");
             Console.WriteLine("\tmoveforward, movebackward, stopmotors, wait, turnright, turnleft, ledon, ledoff, gettemperature, ");
+            Console.WriteLine("\tbuzzeron, buzzeroff");
             Console.WriteLine();
             Console.WriteLine("\tEnter (done) to finish the list of commands");
 
@@ -2672,7 +2683,7 @@ namespace Project_FinchControl
                     }
                     else
                     {
-                        Console.WriteLine("\tPlease enter one of the following:");
+                        Console.WriteLine("\tPlease enter a valid command:");
                     }
                 }
                 else
