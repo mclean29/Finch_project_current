@@ -2575,10 +2575,12 @@ namespace Project_FinchControl
 
                     case Command.moveforward:
                         doofus.setMotors(commandParameters.motorSpeed, commandParameters.motorSpeed);
+                        doofus.wait(1000);
                         break;
 
                     case Command.movebackward:
                         doofus.setMotors(-commandParameters.motorSpeed, -commandParameters.motorSpeed);
+                        doofus.wait(1000);
                         break;
 
                     case Command.stopmotors:
@@ -2586,7 +2588,7 @@ namespace Project_FinchControl
                         break;
 
                     case Command.wait:
-                        int waitMilliseconds = (int)commandParameters.waitSeconds;
+                        int waitMilliseconds = (((int)commandParameters.waitSeconds)*1000);
                         doofus.wait(waitMilliseconds);
                         break;
 
@@ -2859,20 +2861,20 @@ namespace Project_FinchControl
                 //insert first number
                 //
                 Console.WriteLine();
-                Console.Write($"\tValue of led brightness: ");
+                Console.Write($"\tValue of wait time in seconds: ");
                 waitSecondsParaP = Console.ReadLine();
                 Console.WriteLine();
 
                 if (!double.TryParse(waitSecondsParaP, out waitSecondsPara))
                 {
                     Console.WriteLine();
-                    Console.WriteLine($"\tPlease enter a number using digits from 0-255");
+                    Console.WriteLine($"\tPlease enter a valid number (0 and up)");
                     validResponse = false;
                 }
                 else if ((waitSecondsPara < 0))
                 {
                     Console.WriteLine();
-                    Console.WriteLine($"\tPlease enter a number using digits from 0-255");
+                    Console.WriteLine($"\tPlease enter a valid number (0 and up)");
                     validResponse = false;
                 }
                 else
