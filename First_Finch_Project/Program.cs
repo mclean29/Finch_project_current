@@ -48,7 +48,7 @@ namespace Project_FinchControl
         ///  
         static void Main(string[] args)
         {
-
+            
             SetTheme();
 
             DisplayWelcomeScreen();
@@ -92,7 +92,8 @@ namespace Project_FinchControl
                 Console.WriteLine("\tc) Data Recorder");
                 Console.WriteLine("\td) Alarm System");
                 Console.WriteLine("\te) User Programming");
-                Console.WriteLine("\tf) Disconnect Finch Robot");
+                Console.WriteLine("\tf) File Use Demo");
+                Console.WriteLine("\tg) Disconnect Finch Robot");
                 Console.WriteLine("\tq) Quit");
                 Console.Write("\t\tEnter Choice:");
                 menuChoice = Console.ReadLine().ToLower();
@@ -123,6 +124,10 @@ namespace Project_FinchControl
                         break;
 
                     case "f":
+                        fileIOProgram();
+                        break;
+
+                    case "g":
                         DisplayDisconnectdoofus(doofus);
                         break;
 
@@ -140,6 +145,303 @@ namespace Project_FinchControl
 
             } while (!quitApplication);
         }
+
+        #region FileIO
+        //
+        //File IO main
+        //
+        private static void fileIOProgram()
+        {
+            string dataPath = @"Data\Data.txt";
+            string userInput = "";
+            string userInput2 = "";
+            bool validResponse = true;
+            //
+            //show valid background colors
+            //
+            DisplayScreenHeader("Theme Change");
+            Console.WriteLine();
+            Console.WriteLine("\tHere are the valid background color choices:");
+            Console.WriteLine();
+            Console.WriteLine("\tBlack, Blue, Cyan, Green, Yellow, White, Red, Magenta, Gray,");
+            Console.WriteLine();
+            Console.WriteLine("\tDarkBlue, DarkCyan, DarkGray, DarkGreen, DarkRed, DarkYellow, and DarkMagenta");
+            Console.WriteLine();
+            Console.WriteLine();
+
+            //
+            //user enters and it validates
+            //
+            do
+            {
+                validResponse = true;
+                Console.WriteLine();
+                Console.Write("\tYour Choice of Background color: ");
+                userInput = Console.ReadLine();
+                switch (userInput)
+                {
+                    case "Red":
+                        Console.WriteLine();
+                        Console.WriteLine("You entered: Red for a Background Color");
+                        validResponse = true;
+                        break;
+
+                    case "Black":
+                        Console.WriteLine();
+                        Console.WriteLine("You entered: Black for a Background Color");
+                        validResponse = true;
+                        break;
+
+                    case "Blue":
+                        Console.WriteLine();
+                        Console.WriteLine("You entered: Blue for a Background Color");
+                        validResponse = true;
+                        break;
+
+                    case "Cyan":
+                        Console.WriteLine();
+                        Console.WriteLine("You entered: Cyan for a Background Color");
+                        validResponse = true;
+                        break;
+
+                    case "Green":
+                        Console.WriteLine();
+                        Console.WriteLine("You entered: Green for a Background Color");
+                        validResponse = true;
+                        break;
+
+                    case "Yellow":
+                        Console.WriteLine();
+                        Console.WriteLine("You entered: Yellow for a Background Color");
+                        validResponse = true;
+                        break;
+
+                    case "White":
+                        Console.WriteLine();
+                        Console.WriteLine("You entered: White for a Background Color");
+                        validResponse = true;
+                        break;
+
+                    case "Magenta":
+                        Console.WriteLine();
+                        Console.WriteLine("You entered: Magenta for a Background Color");
+                        validResponse = true;
+                        break;
+
+                    case "Gray":
+                        Console.WriteLine();
+                        Console.WriteLine("You entered: Gray for a Background Color");
+                        validResponse = true;
+                        break;
+
+                    case "DarkBlue":
+                        Console.WriteLine();
+                        Console.WriteLine("You entered: Dark Blue for a Background Color");
+                        validResponse = true;
+                        break;
+
+                    case "DarkCyan":
+                        Console.WriteLine();
+                        Console.WriteLine("You entered: Dark Cyan for a Background Color");
+                        validResponse = true;
+                        break;
+
+                    case "DarkGray":
+                        Console.WriteLine();
+                        Console.WriteLine("You entered: Dark Gray for a Background Color");
+                        validResponse = true;
+                        break;
+
+                    case "DarkGreen":
+                        Console.WriteLine();
+                        Console.WriteLine("You entered: Dark Green for a Background Color");
+                        validResponse = true;
+                        break;
+
+                    case "DarkRed":
+                        Console.WriteLine();
+                        Console.WriteLine("You entered: Dark Red for a Background Color");
+                        validResponse = true;
+                        break;
+
+                    case "DarkYellow":
+                        Console.WriteLine();
+                        Console.WriteLine("You entered: Dark Yellow for a Background Color");
+                        validResponse = true;
+                        break;
+
+                    case "DarkMagenta":
+                        Console.WriteLine();
+                        Console.WriteLine("You entered: Dark Magenta for a Background Color");
+                        validResponse = true;
+                        break;
+
+                    default:
+                        Console.WriteLine();
+                        Console.WriteLine("\tPlease enter a Valid Background Color");
+                        validResponse = false;
+                        break;
+                }
+
+            } while (!validResponse);
+            continueScreen();
+
+            //
+            //user enters foreground color
+            //
+            Console.WriteLine();
+            Console.WriteLine("\tHere are the valid foreground color choices:");
+            Console.WriteLine();
+            Console.WriteLine("\tBlack, Blue, Cyan, Green, Yellow, White, Red, Magenta, Gray,");
+            Console.WriteLine();
+            Console.WriteLine("\tDarkBlue, DarkCyan, DarkGray, DarkGreen, DarkRed, DarkYellow, and DarkMagenta");
+            Console.WriteLine();
+            Console.WriteLine();
+            do
+            {
+                validResponse = true;
+                Console.WriteLine();
+                Console.WriteLine("\tNow for a Foreground Color");
+                Console.WriteLine();
+                Console.WriteLine("\t\tWarning: Entering the same color as the background will make it impossible to see anything");
+                Console.WriteLine();
+                Console.Write("\tYour Choice of Foreground color: ");
+                userInput2 = Console.ReadLine();
+                switch (userInput2)
+                {
+                    case "Red":
+                        Console.WriteLine();
+                        Console.WriteLine("\tYou entered: Red for a Foreground Color");
+                        validResponse = true;
+                        break;
+
+                    case "Black":
+                        Console.WriteLine();
+                        Console.WriteLine("\tYou entered: Black for a Foreground Color");
+                        validResponse = true;
+                        break;
+
+                    case "Blue":
+                        Console.WriteLine();
+                        Console.WriteLine("\tYou entered: Blue for a Foreground Color");
+                        validResponse = true;
+                        break;
+
+                    case "Cyan":
+                        Console.WriteLine();
+                        Console.WriteLine("\tYou entered: Cyan for a Foreground Color");
+                        validResponse = true;
+                        break;
+
+                    case "Green":
+                        Console.WriteLine();
+                        Console.WriteLine("\tYou entered: Green for a Foreground Color");
+                        validResponse = true;
+                        break;
+
+                    case "Yellow":
+                        Console.WriteLine();
+                        Console.WriteLine("\tYou entered: Yellow for a Foreground Color");
+                        validResponse = true;
+                        break;
+
+                    case "White":
+                        Console.WriteLine();
+                        Console.WriteLine("\tYou entered: White for a Foreground Color");
+                        validResponse = true;
+                        break;
+
+                    case "Magenta":
+                        Console.WriteLine();
+                        Console.WriteLine("\tYou entered: Magenta for a Foreground Color");
+                        validResponse = true;
+                        break;
+
+                    case "Gray":
+                        Console.WriteLine();
+                        Console.WriteLine("\tYou entered: Gray for a Foreground Color");
+                        validResponse = true;
+                        break;
+
+                    case "DarkBlue":
+                        Console.WriteLine();
+                        Console.WriteLine("\tYou entered: Dark Blue for a Foreground Color");
+                        validResponse = true;
+                        break;
+
+                    case "DarkCyan":
+                        Console.WriteLine();
+                        Console.WriteLine("\tYou entered: Dark Cyan for a Foreground Color");
+                        validResponse = true;
+                        break;
+
+                    case "DarkGray":
+                        Console.WriteLine();
+                        Console.WriteLine("\tYou entered: Dark Gray for a Foreground Color");
+                        validResponse = true;
+                        break;
+
+                    case "DarkGreen":
+                        Console.WriteLine(  );
+                        Console.WriteLine("\tYou entered: Dark Green for a Foreground Color");
+                        validResponse = true;
+                        break;
+
+                    case "DarkRed":
+                        Console.WriteLine();
+                        Console.WriteLine("\tYou entered: Dark Red for a Foreground Color");
+                        validResponse = true;
+                        break;
+
+                    case "DarkYellow":
+                        Console.WriteLine();
+                        Console.WriteLine("\tYou entered: Dark Yellow for a Foreground Color");
+                        validResponse = true;
+                        break;
+
+                    case "DarkMagenta":
+                        Console.WriteLine();
+                        Console.WriteLine("\tYou entered: Dark Magenta for a Foreground Color");
+                        validResponse = true;
+                        break;
+
+                    default:
+                        Console.WriteLine();
+                        Console.WriteLine("\tPlease enter a Valid Foreground Color");
+                        validResponse = false;
+                        break;
+                }
+
+            } while (!validResponse);
+
+            if (userInput == userInput2)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.WriteLine("Alright, you set the foreground AND background colors the same, have fun seeing anything!");
+                Console.WriteLine();
+                Console.WriteLine("\tPress any button to continue and not see :)");
+            }
+            else
+            {
+                Console.WriteLine($"\tYou entered: {userInput} for Background and {userInput2} for Foreground");
+                Console.WriteLine();
+                Console.WriteLine("\tPress any button to continue and see the changes");
+                Console.ReadKey();
+            }
+
+            //
+            //enter in to data file
+            //
+            File.WriteAllText(dataPath, userInput);
+            
+
+            Console.ReadKey();
+
+        }
+
+
+        #endregion
 
         #region TALENT SHOW
 
