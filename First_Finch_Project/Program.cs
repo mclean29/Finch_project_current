@@ -155,6 +155,8 @@ namespace Project_FinchControl
             string dataPath = @"Data\Data.txt";
             string userInput = "";
             string userInput2 = "";
+            string userInputP = "";
+            string userInput2P = "";
             bool validResponse = true;
             //
             //show valid background colors
@@ -430,11 +432,30 @@ namespace Project_FinchControl
                 Console.ReadKey();
             }
 
+            userInputP = userInput + "\n";
+            userInput2P = userInput2 + "\n";
+
             //
             //enter in to data file
             //
-            File.WriteAllText(dataPath, userInput);
-            
+            File.WriteAllText(dataPath, userInputP);
+            File.AppendAllText(dataPath, userInput2P);
+            //
+            //Read data
+            //
+            string[] userInputs = File.ReadAllLines(dataPath);
+
+            //
+            //set the colorss
+            //
+            if (Enum.TryParse(userInputs[0], out ConsoleColor background))
+            {
+                Console.BackgroundColor = background;
+            }
+            if (Enum.TryParse(userInputs[1], out ConsoleColor text))
+            {
+                Console.ForegroundColor = text;
+            }
 
             Console.ReadKey();
 
