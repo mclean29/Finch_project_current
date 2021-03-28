@@ -443,11 +443,48 @@ namespace Project_FinchControl
             //
             //Read data
             //
-            string[] userInputs = File.ReadAllLines(dataPath);
+            //string[] userInputs = File.ReadAllLines(dataPath);
+
+            //
+            //Try catch
+            //
+            string errorMessage = "";
+            string[] userInputs = null;
+            try
+            {
+                userInputs = File.ReadAllLines(dataPath);
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+
+                Console.WriteLine("Error: Folder not found");
+                errorMessage = ex.Message;
+            }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine("Error: File not found");
+                errorMessage = ex.Message;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: File I/O error");
+                errorMessage = ex.Message;
+            }
+            finally
+            {
+                if (errorMessage != "")
+                {
+                    Console.WriteLine(errorMessage);
+                }
+
+            }
+
 
             //
             //set the colorss
             //
+            
             if (Enum.TryParse(userInputs[0], out ConsoleColor background))
             {
                 Console.BackgroundColor = background;
@@ -457,7 +494,11 @@ namespace Project_FinchControl
                 Console.ForegroundColor = text;
             }
 
+            Console.Clear();
+            Console.WriteLine();
             Console.ReadKey();
+            Console.WriteLine("\t Ta Da!");
+            continueScreen();
 
         }
 
